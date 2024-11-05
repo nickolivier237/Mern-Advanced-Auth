@@ -1,16 +1,14 @@
-import { create } from "zustand";
+import {create} from 'zustand'
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";
-
-axios.defaults.withCredentials = true;
-export const  useauthStore = create((set) => ({
-    user: null,
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/api/auth" : "/api/auth";
+export const useauthStore = create((set) => ({
+    user:null,
     isAuthenticated:false,
-    error:  null,
-    isLoading:  false,
-    isCheckingauth: true,
-    message: null,
+    error:null,
+    isLoading:false,
+    isCheckingAuth:true,
+
 
     signup: async(name,email,password) => {
         set({ isLoading: true,error:  null });
